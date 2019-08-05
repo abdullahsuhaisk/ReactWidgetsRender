@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-import WishList from "./WhishList";
-import Login from "./login";
-import Products from "./Products";
 
 import "./styles.css";
+import { MyComponentService } from "./utils/ComponentService";
 
-const MyComponentService = {
-  login: <Login />,
-  product: <Products />,
-  wishlist: <WishList />
-};
+
 
 const jsonTemplate = {
   tabs: [
