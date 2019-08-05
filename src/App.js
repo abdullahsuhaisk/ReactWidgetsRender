@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import WishList from "./WhishList";
+import Login from "./login";
+import Products from "./Products";
 
+import "./styles.css";
+
+const MyComponentService = {
+  login: <Login />,
+  product: <Products />,
+  wishlist: <WishList />
+};
+
+const jsonTemplate = {
+  tabs: [
+    {
+      title: "Login",
+      key: "login"
+    },
+    {
+      title: "Wishlist",
+      key: "wishlist"
+    },
+    {
+      title: "Products",
+      key: "product"
+    }
+  ]
+};
+
+function buildMenu(tabs, callback) {
+  return tabs.map(item => (
+    <button key={item.title} onClick={() => callback(item.key)}>
+      {item.title}
+    </button>
+  ));
+}
 function App() {
+  const [tab, setTab] = useState(jsonTemplate.tabs[0].key);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {buildMenu(jsonTemplate.tabs, setTab)}
+      <hr />
+      <div className="App">{MyComponentService[tab]}</div>
+    </>
   );
 }
 
