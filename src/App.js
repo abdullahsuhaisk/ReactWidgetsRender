@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import "./styles.css";
 import { MyComponentService } from "./utils/ComponentService";
 
-
-
 const jsonTemplate = {
   tabs: [
     {
@@ -31,11 +29,24 @@ function buildMenu(tabs, callback) {
 }
 function App() {
   const [tab, setTab] = useState(jsonTemplate.tabs[0].key);
+  const Component = MyComponentService[tab];
+  const products = [
+    {
+      name: "Product 1",
+      price: "100"
+    },
+    {
+      name: "Product 2",
+      price: "200"
+    }
+  ];
   return (
     <>
       {buildMenu(jsonTemplate.tabs, setTab)}
       <hr />
-      <div className="App">{MyComponentService[tab]}</div>
+      <div className="App">
+        <Component products={products} />
+      </div>
     </>
   );
 }

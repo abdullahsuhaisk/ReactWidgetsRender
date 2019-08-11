@@ -1,0 +1,16 @@
+export const jsonTemplate = {
+    "tabs": [
+      {
+        "title": "Login",
+        "key": "login"
+      },
+      {
+        "title": "Wishlist",
+        "key": "wishlist"
+      },
+      {
+        "title": "Products",
+        "key": "product"
+      }
+    ]
+  };

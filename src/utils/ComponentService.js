@@ -4,7 +4,7 @@ import Login from "../features/Login";
 import Products from "../features/Products";
 
 export const MyComponentService = {
-  login: <Login />,
-  product: <Products />,
-  wishlist: <WishList />
+  login: Login,
+  product: props => Products(props),
+  wishlist: WishList
 };
