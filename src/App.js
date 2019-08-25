@@ -1,35 +1,25 @@
 import React, { useState } from "react";
 
-import "./styles.css";
 import { MyComponentService } from "./utils/ComponentService";
-
-const jsonTemplate = {
-  tabs: [
-    {
-      title: "Login",
-      key: "login"
-    },
-    {
-      title: "Wishlist",
-      key: "wishlist"
-    },
-    {
-      title: "Products",
-      key: "product"
-    }
-  ]
-};
+import { useCss, useTemplate } from "./Hooks/templateHooks";
 
 function buildMenu(tabs, callback) {
   return tabs.map(item => (
-    <button key={item.title} onClick={() => callback(item.key)}>
+    <button
+      key={item.title}
+      onClick={() => callback(item.key)}
+      className="button-tab"
+    >
       {item.title}
     </button>
   ));
 }
 function App() {
-  const [tab, setTab] = useState(jsonTemplate.tabs[0].key);
+  useCss("/style/styles.css");
+  const tema = useTemplate();
+  const [tab, setTab] = useState("login");
   const Component = MyComponentService[tab];
+  
   const products = [
     {
       name: "Product 1",
@@ -42,7 +32,7 @@ function App() {
   ];
   return (
     <>
-      {buildMenu(jsonTemplate.tabs, setTab)}
+      {tema && buildMenu(tema.tabs, setTab)}
       <hr />
       <div className="App">
         <Component products={products} />

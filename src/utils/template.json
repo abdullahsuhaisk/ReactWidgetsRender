@@ -1,4 +1,4 @@
-export const jsonTemplate = {
+{
     "tabs": [
       {
         "title": "Login",
@@ -13,4 +13,4 @@ export const jsonTemplate = {
         "key": "product"
       }
     ]
-  };
+}
